@@ -1,4 +1,5 @@
 var webpage = require('webpage')
+var clientJS = fs.read('./client/common.js')
 
 exports.create = function(){
 	var page = webpage.create()

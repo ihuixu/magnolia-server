@@ -1,9 +1,16 @@
+var fs = require('fs')
+var fs = require('fs');
+
+// Print the directory from which phantomjs was run:
+var cwd = fs.absolute(".");
+console.log(cwd);
+
 var urls = [
 	"http://xhpages.fex.lehe.com/glk/5399"
 	, "http://xhpages.fex.lehe.com/glk/1359"
 	, "http://xhpages.fex.lehe.com/glk/3025"
 ]
-var url = urls[0]
+var url = urls[2]
 
 var t = Date.now()
 var page = require('webpage').create()
@@ -37,6 +44,13 @@ function render(data){
 	page.render(filename+'.jpg',{format: 'jpg', quality: '100'});
 }
 
+function getContent(data){
+	var filename = data.data.filename || encodeURIComponent(url)
+	console.log(filename)
+	fs.write(filename+'.html', page.content, "w")
+	console.log(filename)
+}
+
 page.onCallback = function(data) {
 	console.log('CALLBACK:', JSON.stringify(data));
 
@@ -46,11 +60,12 @@ page.onCallback = function(data) {
 			break;
 
 		case 'getContent':
-			console.log(page.content)
+			getContent(data)
 			break;
 
 		case 'autoScrollSuccess':
-			render(data)
+			//render(data)
+			getContent(data)
 			break;
 
 		case 'render':

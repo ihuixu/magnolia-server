@@ -11,7 +11,7 @@ var commonPhantom = (function() {
 		if(!checked())
 			return;
 
-		var step = 100
+		var step = 200
 			, wait = 300
 			//, info = 'Scrolling'
 			, test = 5

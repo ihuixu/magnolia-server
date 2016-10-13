@@ -1,6 +1,7 @@
 var fs = require('fs');
 var system = require('system')
-var page = require('./base/page.js').create()
+var webpage = require('./base/webpage.js')
+var page = webpage.create()
 var clientJS = fs.read('./client/common.js')
 
 var url = system.args[1]

@@ -1,6 +1,7 @@
 var fs = require('fs');
 var system = require('system')
 var page = require('webpage').create()
+var clientJS = fs.read('./client/common.js')
 
 var url = system.args[1]
 
@@ -26,9 +27,14 @@ page.onError = function(msg, trace) {
 };
 
 page.onInitialized = function() {
-	page.evaluate(function() {
-	})
+	page.evaluateJavaScript('function(){'+clientJS+'}')
 }
+
+page.open(url, function(status) {
+	page.evaluate(function() {
+		console.log('PageTitle:', document.title);
+	});
+})
 
 page.onCallback = function(data) {
 	console.log('CALLBACK:', JSON.stringify(data));
@@ -59,10 +65,4 @@ page.onCallback = function(data) {
 			break;
 	}
 };
-
-page.open(url, function(status) {
-	page.evaluate(function() {
-		console.log('PageTitle:', document.title);
-	});
-})
 

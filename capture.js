@@ -25,6 +25,16 @@ page.onError = function(msg, trace) {
 
 };
 
+page.onInitialized = function() {
+	page.evaluateJavaScript('function(){'+clientJS+'}')
+}
+
+page.open(url, function(status) {
+	page.evaluate(function() {
+		console.log('PageTitle:', document.title);
+	});
+})
+
 page.onCallback = function(data) {
 	console.log('CALLBACK:', JSON.stringify(data));
 
@@ -48,10 +58,4 @@ page.onCallback = function(data) {
 			break;
 	}
 };
-
-page.open(url, function(status) {
-	page.evaluate(function() {
-		console.log('PageTitle:', document.title);
-	});
-})
 

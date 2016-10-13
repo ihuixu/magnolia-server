@@ -46,9 +46,13 @@ function render(data){
 
 function getContent(data){
 	var filename = data.data.filename || encodeURIComponent(url)
-	console.log(filename)
+
+	page.evaluate(function(){
+		$('script').remove()
+	});
+
 	fs.write(filename+'.html', page.content, "w")
-	console.log(filename)
+	console.log('getContent:', filename)
 }
 
 page.onCallback = function(data) {

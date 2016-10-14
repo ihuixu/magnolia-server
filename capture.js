@@ -9,7 +9,10 @@ var t = Date.now()
 
 page.open(url, function(status) {
 	page.evaluate(function() {
-		console.log('PageTitle:', document.title);
+		console.log('PageTitle:', document.title)
+		console.log('location.href:', window.location.href)
+
+		window.magnolia && window.magnolia.autoScroll()
 	});
 })
 

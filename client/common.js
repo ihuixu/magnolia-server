@@ -11,7 +11,7 @@ var magnolia = (function() {
 		if(!checked())
 			return;
 
-		var step = 200
+		var step = 100
 			, wait = 300
 			//, info = 'Scrolling'
 			, test = 5

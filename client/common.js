@@ -1,4 +1,4 @@
-var commonPhantom = (function() {
+var magnolia = (function() {
 
 	var fns = {}
 
@@ -73,4 +73,4 @@ var commonPhantom = (function() {
 
 })()
 
-window.commonPhantom = commonPhantom
+window.magnolia = magnolia

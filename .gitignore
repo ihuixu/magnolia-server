@@ -1,0 +1,7 @@
+/node_modules
+/logs
+/run
+npm-debug.log
+.babelrc
+**.swp
+
